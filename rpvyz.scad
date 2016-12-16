@@ -30,6 +30,11 @@ rotate([0,print?-90:0,0])
                 translate([0,0,-3/2])
                     cube([x,y,3],center=true);
 
+                translate([-x/2+3/2,0,-7+2.5])
+                translate([0,0,-3/2])
+                    cube([3,y+3,8],center=true);
+
+
                 for(p=[[0,4.5,2.5],[90,2.6,4.4]])
                 rotate([0,0,p[0]])
                 for(dx=[1,-1])
@@ -40,6 +45,7 @@ rotate([0,print?-90:0,0])
                 rotate([90,0,0])
                 translate([0,0,p[2]])
                     cylinder(h=p[1],d=8);
+
             }
             
             for(h=[-61,-34,-7])
@@ -68,6 +74,7 @@ rotate([0,print?-90:0,0])
                         cylinder(h=7,d=5+play);                        
                     }
                 }
+
                 if(h==-61)
                 for(d=[1,-1])
                 translate([0,d*32/2,-5])
@@ -96,17 +103,17 @@ rotate([0,print?-90:0,0])
                     cylinder(h=15,d=3+play);    
                    
                 translate([-(M3_nut_w+play)/2,-5.5,7.1])
-                    cube([M3_nut_w+play,10,M3_nut_h+play]);
+                    cube([M3_nut_w+play,12,M3_nut_h+play]);
                 
                 if(r==90)  
                 {  
-                    translate([-5/2,-(M3_nut_w+play)/2,7])
-                        cube([5+play,M3_nut_w+play,8]);
+                    translate([-5/2,-(M3_nut_w+play)/2,8])
+                        cube([5+play,M3_nut_w+play,7]);
                         
                     translate([0,0,10])
                     rotate([90,0,0])
-                    translate([0,0,-5])
-                        cylinder(h=10,d=M3_nut_w+play);    
+                    translate([0,0.5,-5])
+                        cylinder(h=11,d=M3_nut_w+play);    
                 }
             }
 
@@ -124,27 +131,21 @@ rotate([0,print?-90:0,0])
                     {
                         cube([x+nema17_screw_d/2-2,nema17_screw_d+13,5]);
                         translate([42,11.5,-1])
-                        rotate([0,0,0])
                             cube([40,40,5+2]);
                         translate([30.5+3,22,-1])
-                        rotate([0,0,0])
                             cube([40,40,5+2]);
                     }
-                    difference()
-                    {
-                        cube([3,nema17_screw_d+13,30]);
-                        
-                        translate([-1,-20,39])
-                        rotate([-28,0,0])
-                            cube([5,100,30]);
-
-                    }
+                    translate([0,0,-5])
+                        cube([3,30,35]);
+                    
+                    translate([0,0,27])
+                        cube([17,30,3]);
                 }
             }
             
             delta=3;
             for(d=[-1,0,+1])
-            translate([(d+1)/2*delta,0,0])
+            translate([d/2*delta,0,0])
             translate([15.5,-49.5,-7-4-2])
             {
                 if(d==0)
@@ -168,7 +169,35 @@ rotate([0,print?-90:0,0])
                 {
                     cylinder(h=8,r=(3+play)/2);	
                 }
-            }        
+            }
+            
+            translate([-d_roller/2,-49.5,-47])
+                    cylinder(h=42,d=5+play);
+            translate([-d_roller/2+0.5,-49.5,-14])
+                    cylinder(h=10,d=5+play);
+
+            rotate([0,0,90])
+            translate([0,y/2,0])
+            translate([0,0,-57/2-7])
+            translate([-49.5,4,28.5]) //21.5
+            rotate([90,0,0])
+            {
+                translate([0,0,0])
+                    cylinder(h=15,d=3+play);    
+                   
+                translate([-(M3_nut_w+play)/2,-5.5,7.1])
+                    cube([M3_nut_w+play,12,M3_nut_h+play]);
+                
+                translate([-5/2,-(M3_nut_w+play)/2-5,8])
+                    cube([5+play,M3_nut_w+play+5,7]);
+                    
+                translate([0,0,10])
+                rotate([90,0,0])
+                translate([0,0.5,-5])
+                    cylinder(h=11,d=M3_nut_w+play);    
+            }
+   
+            
         }
     }
     
@@ -184,6 +213,18 @@ rotate([0,print?-90:0,0])
             spacer(7,5+play,(20+4-8.8)/2);
         vroller();
     }
+
+    if(debug)
+    for(h=[-20-2+10+2+3+2+10+1])
+    translate([-d_roller/2,-49.5,h])
+    {
+        for(d=[1,-1])
+        if(d!=1 || h!=-20-2+10+2+3+2+10)
+        translate([0,0,d*(8.8/2+(20+4-8.8)/4)])
+            spacer(7,5+play,(20+4-8.8)/2);
+        vroller();
+    }
+
     if(debug)
     rotate([90,0,0])
     {        
