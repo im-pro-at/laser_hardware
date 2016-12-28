@@ -18,13 +18,13 @@ use <spacer.scad>;
 //       *
 //  ------------
 
-woodd=13;
+woodd=12;
 
 d_roller=(31.9+31)/2;
 
 sliderw=40;
 workl=500-100-2*woodd;
-workb=400-60-2*woodd;
+workb=400-60-2*woodd+65; //To support A4
 workh=50;
 
 levels=4;
